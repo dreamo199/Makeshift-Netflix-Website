@@ -1,0 +1,48 @@
+*{
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.movie-card {
+  transition: transform .25s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-poster {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 15px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+
+.genre-pill {
+  background: #222;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-size: 12px;
+  margin-right: 6px;
+  color: #ddd;
+}
+body{
+  background-color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.top-rated{
+  transition: transform .25s ease;
+}
+.top-rated:hover {
+  transform: scale(1.05);
+}
