@@ -87,7 +87,7 @@ function Homepage(){
             </ul>
           </section>
           <section className='trending'>
-            <h2>Top Rated Movies penis</h2>
+            <h2>Top Rated Movies </h2>
             <ul>
               {topRated.slice(0, 10).map((movie, index) => (
                 <li key={movie.id} className = 'top-rated'>
