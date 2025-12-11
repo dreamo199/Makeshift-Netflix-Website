@@ -30,7 +30,7 @@ class TopRatedMovies(APIView):
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)
 
-class UpcomingMovies(APIView):
+class UpcomingMovies(APIView): ##
     def get(self, request):
         today = timezone.now().date()
         movies = Movie.objects.filter(release_date__gt=today)
@@ -45,7 +45,7 @@ class SearchMovies(generics.ListAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     filter_backends = [SearchFilter]
-    search_fields = ['title', 'overview']
+    search_fields = ['title',]
 
 class GenreList(generics.ListAPIView):
     queryset = Genre.objects.all()
@@ -57,7 +57,7 @@ class MoviesByGenre(APIView):
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)
     
-@api_view(['Get'])
+@api_view(['GET'])
 def similar_movies(request, pk):
     movie = Movie.objects.get(id=pk)
     genre_ids = movie.genre.values_list('id', flat=True)

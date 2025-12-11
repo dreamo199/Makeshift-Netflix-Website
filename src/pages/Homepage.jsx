@@ -15,21 +15,38 @@ function Homepage(){
   const [popular, setPopular] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [featured, setFeatured] = useState([]);
+  const [results, setResults] = useState([]);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
   const isLoggedIn = !!localStorage.getItem("access")
 
   // All Movies
   useEffect ( () =>{
-    fetch('http://127.0.0.1:8000/api/movies/')
-    .then(response => response.json())
-    .then((data) => {
+    async function loadMovies() {
+    const res = await fetch('http://127.0.0.1:8000/api/movies/')
+    const data = await res.json();
       setMovies(data.results || [])
+      setResults(data.results)
+      setNextPage(data.next)
+      setPrevPage(data.previous)
+      console.log(data.next)
       setIsloading(false)
-    })
-    .catch((err => 
-      {console.error(err);
-      setIsloading(false);
-    }));
+    }
+    loadMovies();
   }, [])
+  
+  const handleSearch = async(query) => {
+      
+          if (query.trim() == ""){
+            setResults(movies);
+            return;
+          }
+      
+          const res = await fetch(`http://127.0.0.1:8000/api/search/movie/?search=${query}`);
+          const data = await res.json();
+          setResults(data.results || []);
+          console.log(data)
+        }
 
   // Popular Movies
   useEffect( () => {
@@ -72,7 +89,7 @@ function Homepage(){
         </header>
         <div className='wrapper pt-[90px]'>
           <header>
-            <Searchh onResults={(searched) => setSeacrchTerm(searched)}/>
+            <Searchh onSearch={handleSearch}/>
           </header>
           <Featured movie={featured}/>
           <section className='trending'>
@@ -87,7 +104,7 @@ function Homepage(){
             </ul>
           </section>
           <section className='trending'>
-            <h2>Top Rated Movies </h2>
+            <h2>Top Rated Movies</h2>
             <ul>
               {topRated.slice(0, 10).map((movie, index) => (
                 <li key={movie.id} className = 'top-rated'>
@@ -97,7 +114,6 @@ function Homepage(){
               ))}
             </ul>
           </section>
-{/* Valerius is your daddy */}
           <section className='all-movies'>
             <h2 className='mt-20'>All Movies</h2>
             {isloading ? (
@@ -106,12 +122,26 @@ function Homepage(){
               <p>{errorMessage}</p>
             ) : (
               <ul>
-                {movies.map(movie => (
+                {results.map((movie) => (
                   <MovieCard key={movie.id} movie={movie} />
                 ))}
               </ul>
           )}
           </section>
+          <div className='flex justify-center gap-4 mt-6'>
+            <button disabled={!prevPage} onClick={ async () => {
+          const res = await fetch(prevPage);
+          const data = await res.json();
+          setMovies(data.results)
+          setNextPage(data.next)
+          setPrevPage(data.previous)
+        }} className='px-4 py-2 rounded-md text-white ${nextPage ? "bg-blue-600 : bg-gray-600 opacity-50"}'>
+          Previous
+        </button>
+        <button disabled={!nextPage} onClick={() => loadMovies(nextPagel)} className='px-4 py-2 rounded-md text-white ${nextPage ? "bg-blue-600 : bg-gray-600 opacity-50"}'>
+          Next
+        </button>
+          </div>
         </div>
       </div>
   );
