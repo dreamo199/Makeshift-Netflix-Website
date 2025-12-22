@@ -98,7 +98,7 @@ function Homepage(){
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 
-                <Play className="size-8 text-red-600 fill-600" />
+                <Play className="size-8 text-blue-400 fill-600" />
                 <span className="text-white ">
                   <Logo />
                 </span>
