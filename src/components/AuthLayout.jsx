@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";   
-import Logo from "./logo";
+import Logo from "./Logo";
 
 const AuthLayout = ({ children }) => (
   
