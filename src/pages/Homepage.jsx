@@ -104,7 +104,7 @@ function Homepage(){
                 </span>
               </div>
               <nav className="hidden lg:flex items-center gap-8">
-                <a href="#" className="text-white/70 hover:text-white transition-colors">Movies</a>
+                <Link Link to={"/MovieList"} className="text-white/70 hover:text-white transition-colors">Movies</Link>
                 <a href="#" className="text-white/70 hover:text-white transition-colors">TV Shows</a>
                 { !isLoggedIn ? <Link to={`/Login`} className="text-white/70 hover:text-white transition-colors">Login</Link> : <Link to={`/user`} className="text-white/70 hover:text-white transition-colors"><User/></Link>}
               </nav>
@@ -120,7 +120,7 @@ function Homepage(){
         {/* Mobile Menu */}
         {open && (
           <div className="lg:hidden mt-4 flex flex-col gap-4 bg-black/40 p-4 rounded-lg">
-            <a href="#" className="text-white/70 hover:text-white transition-colors">Movies</a>
+            <Link to={"/MovieList"} className="text-white/70 hover:text-white transition-colors">Movies</Link>
             <a href="#" className="text-white/70 hover:text-white transition-colors">TV Shows</a>
             {
               !isLoggedIn
@@ -132,7 +132,7 @@ function Homepage(){
 
           </div>
         </header>
-        <div className='wrapper pt-[90px]'>
+        <div className='wrapper pt-80px'>
           <header>
             <Searchh onSearch={handleSearch}/>
           </header>

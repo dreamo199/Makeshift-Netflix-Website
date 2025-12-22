@@ -27,16 +27,20 @@ class Movie(models.Model):
 class TVShow(models.Model):
     title = models.CharField(max_length=200)
     overview = models.TextField()
-    poster = models.ImageField()
+    poster = models.ImageField(upload_to="tv/posters/", null=True, blank=True)
+    backdrop = models.ImageField(upload_to="tv/backdrop/", null=True, blank=True)
     first_air_date = models.DateField(blank=True, null=True)
     last_air_date = models.DateField(blank=True, null=True)
     genre = models.ManyToManyField(Genre)
     rating = models.FloatField(blank=True, null=True)
     popularity = models.FloatField(default=0.0)
     created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
     original_language = models.CharField(null=True, max_length=50)
     content_rating = models.CharField(null=True, max_length=10)
     duration = models.CharField(null=True, max_length=50)
+    seasons = models.PositiveIntegerField(null=True, blank=True)
+    episodes = models.PositiveIntegerField(null=True, blank=True)
     
     def __str__(self):
         return self.title

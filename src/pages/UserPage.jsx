@@ -24,8 +24,8 @@ const Profile = () => {
 
   if (!user) return (
     <div className="text-center">
-      <h3 className="text-xl font-semibold">Not signed in</h3>
-      <p className="text-gray-400 mt-2">Please <Link to="/login" className="text-red-400">sign in</Link> to view your profile.</p>
+      <h3 className="text-xl font-semibold text-gray-400 pt-5">Not signed in</h3>
+      <p className="text-gray-400 mt-2 p-6">Please <Link to="/login" className="text-red-400">sign in</Link> to view your profile.</p>
     </div>
     );
 
@@ -150,7 +150,7 @@ const Profile = () => {
               {watchlist.map(movie => (
                 <Link to={`/movies/${movie.id}/`} style={{ textDecoration: "none", color: "inherit" }} key={movie.id}>
                 <div key={movie.id} className="relative group rounded-lg overflow-hidden shadow-lg">
-                 <img src={`http://127.0.0.1:8000${movie.poster}`} alt={movie.title} className="w-full h-60 object-cover" />
+                 <img src={`http://127.0.0.1:8000${movie.poster}`} alt={movie.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-2">
                     <h3 className="text-white font-semibold">{movie.title}</h3>
                     <button
@@ -181,7 +181,13 @@ const Profile = () => {
               </div>
               <div className="bg-gray-950 p-6 rounded-lg shadow-md text-center">
                 <h3 className="text-xl font-medium text-white">Favorites</h3>
-                <p className="mt-2 text-4xl font-bold text-red-500"></p>
+                <p className="mt-2 text-4xl font-bold text-red-500">{watchlist.map(m => (
+                    <ul key={m.id}>
+                      <li>
+                        {m.title}
+                      </li>
+                    </ul>
+                ))}</p>
               </div>
               <div className="bg-gray-950 p-6 rounded-lg shadow-md text-center">
                 <h3 className="text-xl font-medium text-white">Avg. Rating</h3>

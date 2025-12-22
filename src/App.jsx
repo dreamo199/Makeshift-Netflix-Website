@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import UserPage from "./pages/UserPage";
 import Login from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage"
+import MovieList from "./pages/MovieList"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/user" element={<UserPage />} />
+        <Route path="/MovieList" element={<MovieList />} />
       </Routes>
     </AnimatePresence>
   );

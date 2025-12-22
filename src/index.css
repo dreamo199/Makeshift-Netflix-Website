@@ -55,7 +55,7 @@
   }
 
   .wrapper {
-    @apply xs:p-10 mx-auto flex flex-col relative z-10 w-screen;
+    @apply xs:p-8 mx-auto flex flex-col relative z-10 w-screen;
   }
 
   .trending {
