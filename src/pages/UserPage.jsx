@@ -5,7 +5,6 @@ import { Home } from "lucide-react";
 import { useWatchlist } from "../hooks/useWatchlist";
 import { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import Aurora from '../components/Aurora';
 
 const Profile = () => {
   const { user, logout } = useContext(AuthContext);

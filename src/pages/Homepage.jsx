@@ -1,6 +1,6 @@
 import '../App.css';
 import { useState, useEffect } from 'react';
-import Logo from "../components/logo";
+import Logo from "../components/Logo";
 import { Play, User } from "lucide-react";
 import Searchh from '../components/Search';
 import MovieCard from '../components/MovieCard';
